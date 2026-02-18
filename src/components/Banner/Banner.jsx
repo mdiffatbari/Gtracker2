@@ -1,86 +1,44 @@
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router';
-import bannerOne from '../../assets/slider/slider_one.jpg';
-import bannerTwo from '../../assets/slider/slider_two.jpg';
-import bannerThree from '../../assets/slider/slider_three.jpg';
+import React from 'react';
+import heroImage from '../../assets/heroimage.png';
 
 const Banner = () => {
-  const [activeSlide, setActiveSlide] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveSlide((prev) => (prev + 1) % 3);
-    }, 5000);
-    return () => clearInterval(interval);
-  }, []);
-
-  const slides = [
-    {
-      img: bannerOne,
-      title: 'Relax in Comfort',
-      desc: 'Experience luxury and elegance in every stay with us.',
-      btn: 'View Rooms',
-    },
-    {
-      img: bannerTwo,
-      title: 'Book Your Dream Stay',
-      desc: 'Modern amenities and stunning locations, just a click away.',
-      btn: 'Explore Rooms',
-    },
-    {
-      img: bannerThree,
-      title: 'Unforgettable Experiences',
-      desc: 'Your comfort, our commitment—book now and enjoy.',
-      btn: 'Reserve Now',
-    },
-  ];
-
   return (
-    <div className=''>
-      <div className="relative w-full h-[700px] overflow-hidden">
-        {slides.map((slide, idx) => (
-          <div
-            key={idx}
-            className={`absolute inset-0 w-full h-full transition-opacity duration-1000 ease-in-out ${activeSlide === idx ? 'opacity-100 z-20' : 'opacity-0 z-10'
-              }`}
-          >
-            <div
-              className="w-full h-full bg-cover bg-center relative"
-              style={{ backgroundImage: `url(${slide.img})` }}
-            >
-              {/* Overlay */}
-              <div className="absolute top-0 left-0 w-full h-full bg-black opacity-50 z-10"></div>
+    <section className="bg-[#fcfcfc]">
+      <div className="w-11/12 mx-auto min-h-[80vh] flex flex-col-reverse lg:flex-row items-center gap-10">
 
-              {/* Content */}
-              <div className="z-20 relative text-white pl-6 md:pl-16 max-w-4xl flex items-center h-full">
-                <div>
-                  <h2 className="text-2xl font-bold md:text-5xl  mb-4">{slide.title}</h2>
-                  <p className="mb-6 text-lg">{slide.desc}</p>
-                  <Link
-                    to="/rooms"
-                    className="btn bg-[#236053] text-white border-none hover:bg-[#1b4a42]"
-                  >
-                    {slide.btn}
-                  </Link>
-                </div>
-              </div>
-            </div>
+        {/* Left Content */}
+        <div className="flex-1 text-center lg:text-left">
+          <h1 className="text-4xl lg:text-6xl font-bold leading-tight">
+            Organize Your Tasks <br />
+            <span className="text-[#cf3520]">Boost Your Productivity</span>
+          </h1>
+
+          <p className="mt-6 text-gray-600 max-w-xl mx-auto lg:mx-0">
+            Btracker helps you manage daily tasks, stay focused, and track your progress effortlessly.
+            Simple, fast, and designed for productivity.
+          </p>
+
+          <div className="mt-8 flex justify-center lg:justify-start gap-4">
+            <button className="btn bg-[#cf3520] hover:bg-[#b92f1d] text-white border-none px-8">
+              Get Started
+            </button>
+            <button className="btn btn-outline border-[#cf3520] text-[#cf3520] hover:bg-[#cf3520] hover:text-white px-8">
+              Learn More
+            </button>
           </div>
-        ))}
-
-        {/* Dots */}
-        <div className="absolute bottom-5 left-1/2 -translate-x-1/2 flex gap-2 z-30">
-          {slides.map((_, idx) => (
-            <button
-              key={idx}
-              onClick={() => setActiveSlide(idx)}
-              className={`w-3 h-3 rounded-full ${activeSlide === idx ? 'bg-white' : 'bg-white/50'
-                } transition-transform hover:scale-110`}
-            ></button>
-          ))}
         </div>
+
+        {/* Right Image */}
+        <div className="flex-1 flex justify-center">
+          <img
+            src={heroImage}
+            alt="Task Management Illustration"
+            className="max-w-full lg:max-w-full"
+          />
+        </div>
+
       </div>
-    </div>
+    </section>
   );
 };
 
